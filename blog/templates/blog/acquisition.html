@@ -1,0 +1,44 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="content-section">
+	  <div class="media">
+	    <!-- <img class="rounded-circle account-img" src="{{ user.profile.image.url }}"> -->
+	    <div class="media-body">
+	      <input type="file" name="document">
+		  <button class="btn btn-outline-info" type="submit">Upload Template</button>
+	    </div>
+	  </div>
+	  <form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<!-- <legend class="border-bottom mb-4">Profile Info</legend> -->
+				{{ u_form|crispy }}
+				{{ p_form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<!-- <button class="btn btn-outline-info" type="submit">Update</button> -->
+			</div>
+		</form>
+	</div>
+	<!-- <h2>Templates:</h2> -->
+	<!-- <div class="content-section">
+	  <div class="media">
+	    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+	    <img class="rounded-circle account-img" src="../media/default.jpg">
+	  </div> -->
+		<!-- <form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Templates:</legend>
+				{{ u_form|crispy }}
+				{{ p_form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<input type="file" name="document">
+				<button class="btn btn-outline-info" type="submit">Update</button>
+			</div>
+		</form>
+	</div> -->
+	<!-- </div> -->
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<h2><center>Template List</center></h2>
+
+	<p>
+		<a href="{% url 'blog-upload_book' %}" class="btn btn-primary">Upload Template</a>
+		<a href="{% url 'blog-book_list' %}" class="btn btn-primary">Print All Template</a>
+	</p>
+	<table class="table mb-0" >
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Template</th>
+				<th>Delete
+			</tr>
+		</thead>)
+		<tbody>
+			{% for book in books %}
+				<tr>					
+					<td>{{ book.title }}</td>
+					<td>						
+						<a href="{{ book.image.url }}" class="btn-sm" target="_blank">
+							View Template
+						</a>
+						<div class="media">
+	    					<img class="rounded-circle account-img" src="{{ book.image.url }}">
+	    				<div class="media-body">
+					</td>
+					<td>
+						<form method="post" action="{% url 'blog-delete_book' book.pk %}">
+							{% csrf_token %}
+							<button type="Submit" class="btn-danger btn-sm">Delete</button>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
